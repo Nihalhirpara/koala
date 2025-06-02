@@ -87,9 +87,9 @@
 //               </li>
 //             </ul>
 //           </div>
-    
+
 //           {/* -------------Navbar---------------- */}
-    
+
 //           <div
 //             className="flex justify-between bg-white w-full  items-center h-16"
 //             style={{
@@ -106,7 +106,7 @@
 //               height="90"
 //               className="ml-6 mt-3 cursor-pointer"
 //             />
-    
+
 //             {/* <div className="bg-white" style={{ marginTop: "10px" }}>
 //               <Navbar />
 //             </div> */}
@@ -180,7 +180,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../App.css';
+import { Link } from "react-router-dom";
+
+import "../App.css";
 
 import logo from "../assets/logo.png";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
@@ -252,7 +254,6 @@ export default function Navbar() {
 
   return (
     <>
-
       <div className="w-[100%] h-10  bg-yellow-200 flex justify-between items-center px-4 text-sm">
         <p className="cursor-pointer">About</p>
         <p className="text-center flex-1">
@@ -267,7 +268,7 @@ export default function Navbar() {
               src="https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg"
               alt="Australian Flag"
               width="30"
-              
+              className="cursor-pointer"
             />
           </li>
         </ul>
@@ -276,12 +277,14 @@ export default function Navbar() {
       {/* Logo + Navigation */}
       <div className="flex justify-between items-center bg-white px-6 h-20 ">
         {/* Left: Logo */}
-        <img
-          src={logo}
-          alt="Koala logo"
-          width="100"
-          className="cursor-pointer"
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Koala logo"
+            width="100"
+            className="cursor-pointer"
+          />
+        </Link>
 
         {/* Center: Nav items */}
         <ul className="flex gap-8 font-medium text-lg cursor-pointer">
