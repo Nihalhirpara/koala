@@ -1,14 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import Home from './component/Home.jsx'
-import Navbar from './component/Navbar.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
+import App from "./App.jsx";
+import Login from "../pages/Login.jsx";
+import Register from "../pages/Register.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-    {/* <Home/> */}
-    
-  </StrictMode>,
-)
+    <BrowserRouter>
+      <App />
+      {/* <Register/> */}
+    </BrowserRouter>
+  </StrictMode>
+);

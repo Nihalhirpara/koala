@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { FaSearch, FaUser, FaShoppingCart, FaStar } from "react-icons/fa";
 // import { FaTruck, FaMoon, FaShieldAlt } from "react-icons/fa";
 import { GoShieldCheck } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import video from "../assets/video.mp4";
-import Navbar from "../component/Navbar";
-import Sofas from "./Sofas";
+import video from "../../assets/video.mp4";
+import Navbar from "../Navbar/Navbar";
+import Sofas from "../Sofa/Sofas";
 import axios from "axios";
-import Foter from "./Foter";
-import { products, whykoala, aboutus } from "./Constdata";
+import Foter from "../Foter/Foter";
+import { products, whykoala, aboutus } from "../Constdata/Constdata";
 
 const Home = () => {
   const [allBestsellers, setAllBestsellers] = useState([]);
@@ -21,6 +21,43 @@ const Home = () => {
   const [activeCategory, setActiveCategory] = useState("Featured");
   const [allMattresses, setAllMattresses] = useState([]);
   const [selectedSize, setSelectedSize] = useState("Queen");
+
+  const [categoriesss, setCategories] = useState([]);
+
+  const API_BASE = import.meta.env.VITE_BASE_URL;
+  const UPLOAD_BASE =
+    import.meta.env.VITE_UPLOAD_URL || "http://localhost:3000/uploads";
+
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("image", image); // `imageFile` from input
+
+  try {
+    await axios.post(`${import.meta.env.VITE_BASE_URL}/categories`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    alert("Category added!");
+  } catch (err) {
+    console.error("Error submitting category:", err);
+  }
+};
+
+useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/categories`);
+      setCategories(res.data);
+    } catch (err) {
+      console.error("Error fetching categories on home page:", err);
+    }
+  };
+  // fetchCategories();
+  // }, [];
 
   const categories = ["Featured", "Sofa Beds", "Sofas", "Mattresses"];
 
@@ -184,6 +221,24 @@ const Home = () => {
         </div>
       </div>
 
+      {/* ------------admin side Category--------------  */}
+      <div className="p-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {categoriesss.map((cat) => (
+            <div
+              key={cat._id}
+              className="border p-3 rounded shadow hover:shadow-md transition"
+            >
+              <img
+                src={`${UPLOAD_BASE}/${cat.image}`}
+                alt={cat.name}
+                className="w-full h-40 object-cover mb-2 rounded"
+              />
+              <p className="text-center font-medium">{cat.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
       {/* ----------Best Sellers Section---------------- */}
 
       <div>

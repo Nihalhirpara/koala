@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-import Foter from "./Foter";
+import Foter from "../Foter/Foter";
 import { Link } from "react-router-dom";
 
-import { products, faqs } from "./Constdata";
+import { products, faqs } from "../Constdata/Constdata";
 
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
