@@ -88,7 +88,9 @@
 //             </ul>
 //           </div>
 
+
 //           {/* -------------Navbar---------------- */}
+
 
 //           <div
 //             className="flex justify-between bg-white w-full  items-center h-16"
@@ -106,6 +108,7 @@
 //               height="90"
 //               className="ml-6 mt-3 cursor-pointer"
 //             />
+
 
 //             {/* <div className="bg-white" style={{ marginTop: "10px" }}>
 //               <Navbar />
@@ -180,8 +183,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../../App.css";
-import { Link } from "react-router-dom";
+
 
 import logo from "../../assets/logo.png";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
@@ -282,6 +284,14 @@ export default function Navbar() {
       {/* Logo + Navigation */}
       <div className="flex justify-between items-center bg-white px-6 h-20 ">
         {/* Left: Logo */}
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Koala logo"
+            width="100"
+            className="cursor-pointer"
+          />
+        </Link>
         <Link to="/">
           <img
             src={logo}
